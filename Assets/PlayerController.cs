@@ -6,25 +6,29 @@ public class PlayerController : MonoBehaviour {
 
 	public List<GameObject> parts; // Lista madon osista.
 	public GameObject head; // Madon pää
+	public GameObject part; // Madon muu osa
 	private Vector2 dir; // Madon suunta
-	private float speedMultiplier; // Madon nopeus
 	private BoxCollider2D cldr; // BoxCollider2D jolla tarkistetaan osuuko mato johonkin omaan osaansa
 								// tai kentän reunaan.
 
 	void Start () {
 		cldr = GetComponent<BoxCollider2D> ();
 		parts.Add (head); // Lisätään pää listaan.
-		speedMultiplier = 1.0f;
 		dir = Vector2.right; // Liikutaan aluksi oikealle.
 		// Liikutetaan matoa sekunnin jälkeen tietyin aikavälein.
 		// Mato liikkuu aluksi 0.3 sekunnin välein, mutta nopeutuu kun pisteet kasvavat.
-		InvokeRepeating ("Move", 1.0f, 0.3f * speedMultiplier);
+		InvokeRepeating ("Move", 1.0f, 0.3f);
 	}
 	
 	void Move() {
+
 		// Liikutetaan pelaajaa tietyn määrän. Fysiikkamoottoria ei tarvitse käyttää
 		// yksinkertaisessa matopelissä.
 		transform.Translate (dir);
+	}
+
+	public void AddPart() {
+		Instantiate (part);
 	}
 
 	// Update is called once per frame

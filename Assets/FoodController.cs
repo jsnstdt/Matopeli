@@ -5,6 +5,7 @@ using UnityEngine;
 public class FoodController : MonoBehaviour {
 
 	public GameObject food;
+	public GameObject player;
 
 	void Start () {
 		gameObject.transform.position = MakeRandomPosition ();
@@ -24,6 +25,9 @@ public class FoodController : MonoBehaviour {
 	// Jos mato törmää ruokaan..
 	void OnTriggerEnter2D(Collider2D snake) {
 		if (snake.gameObject.name == "Pää") {
+			snake.gameObject.GetComponentInParent<PlayerController> ().AddPart ();
+			Debug.Log(snake);
+
 			GameObject newFood = Instantiate (food);
 			newFood.name = "Ruoka";
 			Destroy (gameObject);

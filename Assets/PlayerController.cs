@@ -8,11 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public GameObject head; // Madon pää
 	public GameObject part; // Madon muu osa
 	private Vector2 dir; // Madon suunta
-	private BoxCollider2D cldr; // BoxCollider2D jolla tarkistetaan osuuko mato johonkin omaan osaansa
-								// tai kentän reunaan.
 
 	void Start () {
-		cldr = GetComponent<BoxCollider2D> ();
 		parts.Add (head); // Lisätään pää listaan.
 		dir = Vector2.right; // Liikutaan aluksi oikealle.
 		// Liikutetaan matoa sekunnin jälkeen tietyin aikavälein.
@@ -21,14 +18,18 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Move() {
-
+		Vector2 headPos = head.gameObject.transform.position;
 		// Liikutetaan pelaajaa tietyn määrän. Fysiikkamoottoria ei tarvitse käyttää
 		// yksinkertaisessa matopelissä.
 		transform.Translate (dir);
+		if (parts.Count > 1) {
+			parts [parts.Count - 1].transform.position = headPos;
+		}
 	}
 
 	public void AddPart() {
-		Instantiate (part);
+		GameObject newPart = Instantiate (part);
+		parts.Add (newPart);
 	}
 
 	// Update is called once per frame

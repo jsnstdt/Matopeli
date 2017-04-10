@@ -12,8 +12,8 @@ public class FoodController : MonoBehaviour {
 	}
 
 	Vector2 MakeRandomPosition() {
-		int x = Random.Range (-38, 38);
-		int y = Random.Range (-28, 28);
+		int x = Random.Range (-19, 19);
+		int y = Random.Range (-14, 14);
 		return new Vector2 (x, y);
 	}
 

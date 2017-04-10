@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	private Vector2 dir; // Madon suunta
 	public List<GameObject> parts; // Lista madon osista.
 	public GameObject head; // Madon pää
 	public GameObject part; // Madon muu osa
-	private Vector2 dir; // Madon suunta
+	public GameObject gameControllerObj;
+	public GameController gameController;
 
 	void Start () {
+		gameController = gameControllerObj.GetComponent<GameController> ();
 		parts.Add (head); // Lisätään pää listaan.
 		dir = Vector2.right; // Liikutaan aluksi oikealle.
 		// Liikutetaan matoa sekunnin jälkeen tietyin aikavälein.
 		// Mato liikkuu aluksi 0.3 sekunnin välein, mutta nopeutuu kun pisteet kasvavat.
-		InvokeRepeating ("Move", 1.0f, 0.2f);
+		InvokeRepeating ("Move", 1.0f, gameController.SpeedModifier);
 	}
 	
 	void Move() {
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour {
 	public void AddPart() {
 		GameObject newPart = Instantiate (part);
 		parts.Add (newPart);
+		gameController.AddScore ();
 	}
 
 	// Update is called once per frame

@@ -21,16 +21,16 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Move() {
-		if (gameController.GameOver)
-			return;
 		Vector2 headPos = head.gameObject.transform.position;
 		// Liikutetaan pelaajaa tietyn määrän. Fysiikkamoottoria ei tarvitse käyttää
 		// yksinkertaisessa matopelissä.
-		transform.Translate (dir);
-		if (parts.Count > 1) {
-			parts [parts.Count - 1].transform.position = headPos;
-			parts.Insert (1, parts [parts.Count - 1]);
-			parts.RemoveAt (parts.Count - 1);
+		if (!gameController.GameOver) {
+			transform.Translate (dir);
+			if (parts.Count > 1) {
+				parts [parts.Count - 1].transform.position = headPos;
+				parts.Insert (1, parts [parts.Count - 1]);
+				parts.RemoveAt (parts.Count - 1);
+			}
 		}
 	}
 

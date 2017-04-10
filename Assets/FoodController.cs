@@ -8,6 +8,7 @@ public class FoodController : MonoBehaviour {
 	public GameObject player;
 
 	void Start () {
+		// Siirretään ruoka satunnaiseen paikkaan.
 		gameObject.transform.position = MakeRandomPosition ();
 	}
 
@@ -25,9 +26,12 @@ public class FoodController : MonoBehaviour {
 	// Jos mato törmää ruokaan..
 	void OnTriggerEnter2D(Collider2D snake) {
 		if (snake.gameObject.name == "Pää") {
+			// Lisätään osa matoon
 			snake.gameObject.GetComponentInParent<PlayerController> ().AddPart ();
+			// Tehdään uusi pala ruokaa
 			GameObject newFood = Instantiate (food);
 			newFood.name = "Ruoka";
+			// Tuhotaan vanha.
 			Destroy (gameObject);
 		}
 	}

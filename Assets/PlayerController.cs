@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 		dir = Vector2.right; // Liikutaan aluksi oikealle.
 		// Liikutetaan matoa sekunnin jälkeen tietyin aikavälein.
 		// Mato liikkuu aluksi 0.3 sekunnin välein, mutta nopeutuu kun pisteet kasvavat.
-		InvokeRepeating ("Move", 1.0f, 0.3f);
+		InvokeRepeating ("Move", 1.0f, 0.2f);
 	}
 	
 	void Move() {
@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 		transform.Translate (dir);
 		if (parts.Count > 1) {
 			parts [parts.Count - 1].transform.position = headPos;
+			parts.Insert (1, parts [parts.Count - 1]);
+			parts.RemoveAt (parts.Count - 1);
 		}
 	}
 

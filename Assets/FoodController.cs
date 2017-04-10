@@ -26,8 +26,6 @@ public class FoodController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D snake) {
 		if (snake.gameObject.name == "Pää") {
 			snake.gameObject.GetComponentInParent<PlayerController> ().AddPart ();
-			Debug.Log(snake);
-
 			GameObject newFood = Instantiate (food);
 			newFood.name = "Ruoka";
 			Destroy (gameObject);

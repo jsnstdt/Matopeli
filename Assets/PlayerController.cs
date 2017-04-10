@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		cldr = GetComponent<BoxCollider2D> ();
-		parts.Add (head);
+		parts.Add (head); // Lisätään pää listaan.
 		speedMultiplier = 1.0f;
 		dir = Vector2.right; // Liikutaan aluksi oikealle.
 		// Liikutetaan matoa sekunnin jälkeen tietyin aikavälein.
@@ -50,4 +50,7 @@ public class PlayerController : MonoBehaviour {
 				dir = Vector2.up;
 		}
 }
+
+	void OnTriggerEnter2D(Collider2D snake) {
+	}
 }

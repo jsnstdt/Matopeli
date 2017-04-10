@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CollisionManager.cs" />
      <Compile Include="Assets\FoodController.cs" />
      <Compile Include="Assets\GameController.cs" />
      <Compile Include="Assets\PlayerController.cs" />

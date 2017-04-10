@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Move() {
+		if (gameController.GameOver)
+			return;
 		Vector2 headPos = head.gameObject.transform.position;
 		// Liikutetaan pelaajaa tietyn määrän. Fysiikkamoottoria ei tarvitse käyttää
 		// yksinkertaisessa matopelissä.
@@ -60,8 +62,5 @@ public class PlayerController : MonoBehaviour {
 			else if (dir != Vector2.down && verti > 0)
 				dir = Vector2.up;
 		}
-}
-
-	void OnTriggerEnter2D(Collider2D snake) {
 	}
 }

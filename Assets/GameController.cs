@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+	public bool GameOver = false;
 	public Text scoreText;
 	private int score;
 	private float speedModifier = 0.15f;

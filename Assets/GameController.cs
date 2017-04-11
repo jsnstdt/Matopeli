@@ -18,8 +18,7 @@ public class GameController : MonoBehaviour {
 			return speedModifier - (score * 0.02f);
 		}
 	}
-
-	// Use this for initialization
+		
 	void Start () {
 		playerController = player.GetComponent<PlayerController> ();	
 	}
@@ -32,18 +31,26 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// Peli ohi-teksti näkyy vain jos peli on ohi.
 		gameOverText.enabled = GameOver;
 		scoreText.text = "Pisteet: " + score.ToString();
 
+		//Haluaako pelaaja yrittää uudestaan?
 		if (GameOver && Input.GetKey (KeyCode.R)) {
 			score = 0;
+			// Siirretään parts-listan ensimmäinen jäsen (madon pää) ruudun keskelle.
 			playerController.parts [0].transform.position = new Vector2 (0, 0);
+
+			//Poistetaan kaikki muut osat.
+			//Ensin poistetaan ne listasta ja sitten tuhotaan ne.
 			while (playerController.parts.Count > 1) {
 				GameObject part = playerController.parts [1];
 				playerController.parts.RemoveAt (1);
 				Destroy (part);
 			}
+			// Jatketaan peliä.
 			GameOver = false;
+
 		}
 
 	}

@@ -13,14 +13,10 @@ public class FoodController : MonoBehaviour {
 	}
 
 	Vector2 MakeRandomPosition() {
+		// Valitaan satunnainen paikka.
 		int x = Random.Range (-19, 19);
 		int y = Random.Range (-14, 14);
 		return new Vector2 (x, y);
-	}
-
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	// Jos mato törmää ruokaan..

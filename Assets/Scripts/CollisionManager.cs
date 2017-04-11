@@ -18,7 +18,7 @@ public class CollisionManager : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		// Jos törmätään muuhun kuin ruokaan.
+		// Jos törmätään muuhun kuin ruokaan, peli on ohi
 		if (coll.tag != "Food") {
 			gameController.GameOver = true;
 		}

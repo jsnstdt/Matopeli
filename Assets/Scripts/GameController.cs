@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
 			playerController.parts [0].transform.position = new Vector2 (0, 0);
 
 			//Poistetaan kaikki muut osat.
-			//Ensin poistetaan ne listasta ja sitten tuhotaan ne.
+			//Ensin poistetaan ne listasta ja sitten tuhotaan ne. Lopetataan kun vain pää on jäljellä.
 			while (playerController.parts.Count > 1) {
 				GameObject part = playerController.parts [1];
 				playerController.parts.RemoveAt (1);

@@ -21,11 +21,20 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Move() {
+		// Tallennetaan pään sijainti.
 		Vector2 headPos = head.gameObject.transform.position;
-		// Liikutetaan pelaajaa tietyn määrän. Fysiikkamoottoria ei tarvitse käyttää
+		// Liikutetaan pelaajaa tietyn määrän jos peli ei ole ohi. Fysiikkamoottoria ei tarvitse käyttää
 		// yksinkertaisessa matopelissä.
 		if (!gameController.GameOver) {
 			transform.Translate (dir);
+
+			// Jos osia on enemmän kuin yksi, pään liikkumisen jälkeen:
+			// 1 2 3 4 ()
+			// 1 2 3 4   () - pää liikkuu
+			// 1 2 3 4 1 () - kopioidaan viimeinen osa pään vanhalle sijainnille
+			//   2 3 4 1 () - poistetaan viimeinen osa
+			//			      jne. näin mato liikkuu ilman että koko madon osien sijaintia tarvitsee pitää muistissa.
+
 			if (parts.Count > 1) {
 				parts [parts.Count - 1].transform.position = headPos;
 				parts.Insert (1, parts [parts.Count - 1]);
@@ -35,6 +44,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void AddPart() {
+		// Tehdään uusi osa, lisätään se osien listaan ja annetaan pelaajalle yksi piste.
 		GameObject newPart = Instantiate (part);
 		parts.Add (newPart);
 		gameController.AddScore ();
